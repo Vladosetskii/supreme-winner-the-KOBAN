@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 using namespace std;
 class troad 
 {
@@ -8,11 +9,12 @@ int Width;
 float Length;
 troad();
 troad(float Length0,int Width0);
+void fileinput();
 };
 troad:: troad()
 {
-Length=50.1;
-Width=4;
+Length=0.0;
+Width=0;
 }
 troad:: troad(float Length0,int Width0)
 {
@@ -23,11 +25,19 @@ if (Width0>0)
 Width = Width0;
 else Width = 1;
 }
+void troad::fileinput()
+{
+char buff[50];
+char buff1[50];
+ifstream fin ("popka.txt");
+fin>>buff; Length=atof(buff);
+fin>>buff1; Width=atoi(buff1);
+}
 int main()
 {
 troad road;
-std::cout<<"road.Width = "<< road.Width<<"\nroad.Length = "<<road.Length<<std::endl;
-troad road1 (50.1,4);
-std::cout<<"road.Width = "<< road1.Width<<"\nroad.Length = "<<road1.Length<<std::endl;
+std::cout<<"road.Length = "<< road.Length<<"\nroad.Width = "<<road.Width<<std::endl;
+road.fileinput();
+std::cout<<"road.Length = "<< road.Length<<"\nroad.Width = "<<road.Width<<std::endl;
 return 0;
 }
